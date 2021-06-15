@@ -1,0 +1,22 @@
+{% extends '__base__.html' %} {% block title %}Reset Password{% endblock %} {% block custom_style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">{% endblock %} {% block content %}
+<main class="form-signin text-center">
+    {% if form %}
+    <form method="POST" class="form-max-width form-flex">
+        <h1 class="h3 mb-3 fw-normal form-item">Reset Password</h1> {{ form.hidden_tag() }}
+        <div class="form-floating form-item">
+            {{ form.password(class_="form-control") }}{{ form.password.label }} {% for error in form.password.errors %}
+        </div>
+        <div class="bg-danger text-white form-control">
+            {{ error }} {% endfor %}
+        </div>
+        <div class="form-floating form-item">
+            {{ form.password2(class_="form-control") }}{{ form.password2.label }} {% for error in form.password2.errors %}
+        </div>
+        <div class="bg-danger text-white form-control">
+            {{ error }} {% endfor %}
+        </div><br>
+        <div class="form-floating form-item">{{ form.submit(class_="w-100 btn btn-lg btn-primary") }}</div>
+    </form>{% endif %}
+</main>
+{% endblock %}

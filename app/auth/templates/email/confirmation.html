@@ -1,0 +1,5 @@
+<p>Dear {{ user.username }}!</p>
+<br>
+<p>You just registered but account is not confirmed yet.</p>
+<p>Pass thru link below for confirming</p>
+<p><a href="{{ url_for('auth.confirm', token=token, _external=True) }}">Confirm</a></p>

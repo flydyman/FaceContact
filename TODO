@@ -1,0 +1,14 @@
+1. Main thread
+    - add Profiles
+    - add Avatars
+    - add Posting (text only)
+    - add Friend list
+    - add Following list
+    - add Communities
+2. Additional thread
+    - modify posting into MD(?) style
+    - add possibility to insert images
+    - add OAuth integration
+    - add external APIs
+    - Admins posting into main page (newsletter)
+    - add reactions for posts

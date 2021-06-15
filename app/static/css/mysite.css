@@ -1,0 +1,9 @@
+.form-field-width-correct {
+    width: 300px;
+    align-items: center !important;
+    text-align: center !important;
+}
+
+.form-max-width {
+    max-width: 300px !important;
+}

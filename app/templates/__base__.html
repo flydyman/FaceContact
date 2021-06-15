@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mysite.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/jquery-3.6.0.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/myscript.js') }}" type="text/javascript"></script>
+    {% block custom_style %}{% endblock %}
+</head>
+
+<body>
+    <!-- Main menu -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.index') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    {% if current_user.is_anonymous %}
+                    <!-- Anonymous -->
+                    <a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a> {% else %}
+                    <!-- Logined -->
+                    {% if current_user._is_admin() %}
+                    <a class="nav-link" href="{{ url_for('admin.index')}}">Admin Panel</a>
+                </li>
+                <li class="nav-item">
+                    {% endif %}
+                    <a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a> {% endif %}
+                </li>
+            </ul>
+            <hr> {% with messages=get_flashed_messages() %} {% if messages %}
+            <ul class="bg-light"> {% for message in messages %}
+                <li class="link-dark">{{ message }}</li>
+                {% endfor %}
+            </ul>{% endif %} {% endwith %}
+        </div>
+    </nav>
+    <!-- Container -->
+
+    {% block content %} {% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+{% extends '__base__.html' %} {% block title %}Resend Confirmation{% endblock %} {% block custom_style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">{% endblock %} {% block content %}
+<main class="form-signin text-center">
+    <h1>Your email was confirmed!</h1>
+    <a href="{{ url_for('auth.login')}}" class="w-100 btn btn-lg btn-primary">Go to login page</a>
+</main>
+{% endblock %}

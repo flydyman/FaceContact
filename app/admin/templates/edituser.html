@@ -1,0 +1,29 @@
+{% extends "a_index.html"%} {% block title %}Edit user{% endblock %}
+<!-- Custom -->
+{% block custom_style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">{% endblock %}
+<!-- Content-->
+{% block content %}
+<main class="form-signin text-center">
+    {% if form %}
+    <form method="POST" class="form-max-width form-flex">
+        <h1 class="h3 mb-3 fw-normal form-item">Edit user</h1> {{ form.hidden_tag() }}
+        <div class="form-floating form-item">
+            {{ form.username(class_="form-control") }}{{ form.username.label }} {% for error in form.username.errors %}
+        </div>
+        <div class="bg-danger text-white form-control">
+            {{ error }} {% endfor %}
+        </div>
+        <div class="form-floating form-item">
+            {{ form.email(class_="form-control") }}{{ form.email.label }} {% for error in form.email.errors %}
+        </div>
+        <div class="bg-danger text-white form-control">
+            {{ error }} {% endfor %}
+        </div>
+        <div class="form-floating form-item">
+            {{ form.groupids(class_="form-control") }}{{ form.groupids.label }}
+        </div><br>
+        <div class="form-floating form-item">{{ form.submit(class_="w-100 btn btn-lg btn-primary") }}</div>
+    </form>{% endif %}
+</main>
+{% endblock %}

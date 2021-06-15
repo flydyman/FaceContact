@@ -1,0 +1,15 @@
+{% extends 'a_index.html' %}{% block title %}Groups{% endblock %} {% block admin_content %}
+<h1 class="h3 text-center">Group list</h1>
+<p class="text-center"><a class="btn btn-primary" href="{{url_for('admin.add_group')}}">Add Group</a></p> {% if groups %}
+<br>
+<table class="table" width=100%>
+    {% for group in groups %}
+    <tr>
+        <td width="3%">{{ group.id }}</td>
+        <td width="*">{{ group.name }}</td>
+        <td width="10%">Users in group: {{ group.users.count() }}</td>
+        <td width="5%"><a href="{{ url_for('admin.edit_group', groupid=group.id) }}" class="btn btn-outline-dark">Edit</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %} {% endblock %}

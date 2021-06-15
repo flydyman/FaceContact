@@ -1,0 +1,21 @@
+{% extends 'a_index.html' %}{% block title %}Users{% endblock %} {% block admin_content %}
+<h1 class="h3 text-center">User list</h1>
+<br> {% if users %}
+<table class="table" width=100%>
+    {% for user in users %}
+    <tr>
+        <td width="3%">{{ user.id }}</td>
+        <td width="*">{{ user.username }}, Email: {{ user.email }}, Associated groups: {{ user.groups.count() }}</td>
+        <td width="10%">{% if user.is_checked %}Verified{% else %}Not Verified{% endif %}</td>
+        <td width="7%">
+            {% if user.is_blocked %}
+            <!-- Banned -->
+            <a class="btn btn-outline-dark" href="{{url_for('admin.ban', userid=user.id)}}">Unban it</a> {% else %}
+            <!-- Not banned -->
+            <a class="btn btn-outline-dark" href="{{url_for('admin.ban', userid=user.id)}}">Ban it</a> {% endif %}
+        </td>
+        <td width="5%"><a href="{{ url_for('admin.edit_user', userid=user.id) }}" class="btn btn-outline-dark">Edit</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %} {% endblock %}

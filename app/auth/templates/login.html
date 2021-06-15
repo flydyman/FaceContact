@@ -1,0 +1,29 @@
+{% extends "__base__.html"%} {% block title %}Login{% endblock %}
+<!-- Custom -->
+{% block custom_style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">{% endblock %}
+<!-- Content-->
+{% block content %}
+<main class="form-signin text-center">
+    {% if form %}
+    <form method="POST" class="form-max-width form-flex">
+        <h1 class="h3 mb-3 fw-normal form-item">Login</h1> {{ form.hidden_tag() }}
+        <div class="form-floating form-item">
+            {{ form.username(class_="form-control") }}{{ form.username.label }} {% for error in form.username.errors %}
+        </div>
+        <div class="bg-danger text-white form-control">
+            {{ error }} {% endfor %}
+        </div>
+        <div class="form-floating form-item">
+            {{ form.password(class_="form-control") }} {{ form.password.label }} {% for error in form.password.errors %}
+        </div>
+        <div class="bg-danger text-white form-control">{{ error }} {% endfor %}
+        </div>
+        <div class="check-box mb-3 form-checkbox">{{ form.remember() }}{{ form.remember.label() }}</div>
+        <div class="form-floating form-item">{{ form.submit(class_="w-100 btn btn-lg btn-primary") }}</div>
+        <div class="form-floating form-item"><a class="w-100 btn btn-lg btn-secondary" href="{{ url_for('auth.register')}}">Registration</a></div>
+        <div class="form-floating form-item">or</div>
+        <div class="form-floating form-item"><a class="w-100 btn btn-lg btn-secondary" href="{{ url_for('auth.resend_confirm')}}">Resend Confirmation</a></div>
+    </form>{% endif %}
+</main>
+{% endblock %}

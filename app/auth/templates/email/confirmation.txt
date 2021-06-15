@@ -1,0 +1,5 @@
+Dear {{ user.username }}!
+
+You just registered but account is not confirmed yet.
+Pass thru link below for confirming
+{{ url_for('auth.confirm', token=token, _external=True) }}
